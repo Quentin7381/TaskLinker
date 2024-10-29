@@ -1,5 +1,6 @@
 :root
     font-size: $font-basis
+    --color-link: $color-links
 
 *
     font-family: $font-main
@@ -7,10 +8,34 @@
     padding: 0
     margin: 0
 
+a
+    color: var(--color-link)
+    text-decoration: none
+
+i
+    font-size: 22px
+
 .bg-dark
     background: $color-background-dark
     color: $color-text-white
+    --color-link: $color-text-white
 
 .bg-darker
     background: $color-background-darker
     color: $color-text-white
+
+.bg-active
+    background: $color-active
+    color: $color-text-green
+
+
+body
+    display: grid
+    grid-template-columns: auto 1fr
+    grid-template-rows: 1fr auto
+
+    min-height: 100vh
+
+img
+    width: 100%
+    object-fit: contain

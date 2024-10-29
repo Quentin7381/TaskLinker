@@ -1,3 +1,22 @@
+button, .button, .section-sidebar .menu a {
+  height: 64px;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+.component-logo {
+  display: flex;
+  flex-align: center;
+  justify-content: center;
+}
+.component-logo img {
+  max-width: 100px;
+}
+
 .section-topbar {
   height: 155px;
   width: 100%;
@@ -7,23 +26,70 @@
   justify-content: flex-end;
 }
 
+.section-sidebar {
+  grid-row: 1/3;
+  width: 150px;
+  height: 100%;
+  padding: 50px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  background: url("../img/bg-menu.svg") center bottom no-repeat #1c5b50 !important;
+}
+.section-sidebar .menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.section-sidebar .menu a {
+  display: flex;
+  justify-content: space-evenly;
+}
 :root {
   font-size: 16px;
+  --color-link: $color-links;
 }
 
 * {
-  font-family: "Manrope, sans-serif";
+  font-family: "Manrope";
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+i {
+  font-size: 22px;
+}
+
 .bg-dark, .section-topbar {
   background: #4d8077;
   color: #ffffff;
+  --color-link: $color-text-white;
 }
 
-.bg-darker {
+.bg-darker, .section-sidebar {
   background: #1c5b50;
   color: #ffffff;
+}
+
+.bg-active, button.--active, .button.--active, .section-sidebar .menu a.--active, .section-sidebar .menu a .--active {
+  background: #dcfdad;
+  color: #1c5b50;
+}
+
+body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
+}
+
+img {
+  width: 100%;
+  object-fit: contain;
 }

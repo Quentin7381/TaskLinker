@@ -12,6 +12,7 @@
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         {% endblock %}
 
         {% block javascripts %}
@@ -19,9 +20,9 @@
         {% endblock %}
     </head>
     <body>
-        {% include 'section/topbar.html.twig' with {'title': title} %}
-        {% include 'section/sidebar.html.twig' %}
-        <div class="section-body">
+        {% include 'region/topbar.html.twig' with {'title': title} %}
+        {% include 'region/sidebar.html.twig' %}
+        <div class="region region-body">
             {% block body %}{% endblock %}
         </div>
     </body>

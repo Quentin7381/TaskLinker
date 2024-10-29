@@ -1,0 +1,29 @@
+.action
+    color: var(--color, $color-text)
+    font-weight: 700
+
+a.action
+    text-decoration: underline
+    --color: #{$color-success}
+
+    &-delete
+        --color: #{$color-error}
+
+i.action
+    &-delete
+        @extend .icon-delete
+        --color: #{$color-error}
+
+    &-edit
+        @extend .icon-edit
+        --color: #{$color-success}
+
+    &-add
+        @extend .icon-add
+        --color: #{$color-success}
+
+button.action, .button.action
+    --color: #{$color-white}
+    
+    &-delete
+        background: $color-error

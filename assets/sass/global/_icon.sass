@@ -1,0 +1,30 @@
+i, .icon
+    font-size: $font-m
+    font-style: normal
+    font-weight: 900
+
+    --color: var(--color, #{$color-text})
+    color: var(--color)
+
+    --background: transparent
+    background: var(--background)
+
+    &::before
+        font-family: 'Font Awesome 5 Free'
+
+    .reverse
+        color: var(--background)
+        background: var(--color)
+
+
+.icon-add::before
+    content: '\f067'
+    --color: #{$color-success}
+
+.icon-edit::before
+    content: '\f044'
+    --color: #{$color-success}
+
+.icon-delete::before
+    content: '\f2ed'
+    --color: #{$color-error}

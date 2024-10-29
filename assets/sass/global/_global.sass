@@ -1,0 +1,31 @@
+*
+    box-sizing: border-box
+    padding: 0
+    margin: 0
+
+section
+    padding: 20px
+
+body
+    display: grid
+    grid-template-columns: auto 1fr
+    grid-template-rows: auto 1fr
+
+    min-height: 100vh
+
+img
+    width: 100%
+    object-fit: contain
+
+// --- Base styles
+@import 'font'
+@import 'background'
+
+// --- Dependent files
+@import 'button'
+@import 'icon'
+@import 'table'
+@import 'action'
+@import 'card'
+@import 'circle'
+@import 'form'

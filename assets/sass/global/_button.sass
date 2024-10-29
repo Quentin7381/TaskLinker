@@ -1,6 +1,15 @@
 button, .button
+
+    // remove default button styles
+    border: none
+    outline: none
+
+
+    // button styles
     height: 64px
     padding: 10px
+    margin: 10px
+    min-width: 128px
 
     border-radius: 10px
     font-weight: 700
@@ -8,6 +17,8 @@ button, .button
     align-items: center
     justify-content: space-around
     text-align: center
+
+    @extend .bg-darker
 
     &.--active
         @extend .bg-active

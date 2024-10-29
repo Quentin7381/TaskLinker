@@ -3,5 +3,145 @@
 {% block title %}Styles{% endblock %}
 
 {% block body %}
-Styles
+
+<!-- Inline styles -->
+<section>
+<h2>Inline styles</h2>
+<h1>Header level 1</h1>
+<h2>Header level 2</h2>
+<h3>Header level 3</h3>
+{# <h4>Header level 4</h4>
+<h5>Header level 5</h5>
+<h6>Header level 6</h6> #}
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+</section>
+
+<!-- Table styles -->
+<section>
+    <h2>Tables</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Table header 1</th>
+                <th>Table header 2</th>
+                <th>Table header 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Table data 1</td>
+                <td>Table data 2</td>
+                <td>Table data 3</td>
+            </tr>
+            <tr>
+                <td>Table data 4</td>
+                <td>Table data 5</td>
+                <td>Table data 6</td>
+            </tr>
+            <tr>
+                <td>Table data 7</td>
+                <td>Table data 8</td>
+                <td>Table data 9</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- Button styles -->
+<section>
+    <h2>Buttons</h2>
+    <button>Button</button>
+    <button disabled>Disabled button</button>
+    <button class="--active">Active button</button>
+</section>
+
+<!-- Actions -->
+<section>
+    <h2>Actions</h2>
+    <h3>Links</h3>
+    <a href="#" class="action action-add">Ajouter</a>
+    <a href="#" class="action action-edit">Modifier</a>
+    <a href="#" class="action action-delete">Supprimer</a>
+
+    <h3>Buttons</h3>
+    <button class="action action-add">Ajouter</button>
+    <button class="action action-edit">Modifier</button>
+    <button class="action action-delete">Supprimer</button>
+
+    <h3>Icons</h3>
+    <a href="#"><i class="action action-add"></i></a>
+    <a href="#"><i class="action action-edit"></i></a>
+    <a href="#"><i class="action action-delete"></i></a>
+</section>
+
+<!-- Cards -->
+<section>
+    <h2>Cards</h2>
+    <div class="cardlist">
+        <div class="card">
+            <p>Card 1</p>
+        </div>
+        <div class="card">
+            <p>Card 2 with link</p>
+            <a href="/" class="card-link"></a>
+        </div>
+        <div class="card">
+            <a href="/" class="card-link"></a>
+            <p>Card 3 with link and actions</p>
+            <div class="actions">
+                <a href="#"><i class="action action-add"></i></a>
+                <a href="#"><i class="action action-edit"></i></a>
+                <a href="#"><i class="action action-delete"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Circles -->
+<section>
+    <h2>Circles</h2>
+    <div class="circle"><i class="icon-add"></i></div>
+    <div class="circle">ND</div>
+</section>
+
+<!-- Forms -->
+<section>
+    <h2>Forms</h2>
+    <form>
+        <label for="text">Text input</label>
+        <input type="text" id="text" name="text">
+        <label for="email">Email input</label>
+        <input type="email" id="email" name="email">
+        <label for="date">Date input</label>
+        <input type="date" id="date" name="date">
+        <label for="time">Time input</label>
+        <input type="time" id="time" name="time">
+        <label for="select">Select input</label>
+        <select id="select" name="select">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+        <label for="textarea">Textarea input</label>
+        <textarea id="textarea" name="textarea"></textarea>
+        <div class="cols">
+            <div>
+                <label for="text">Field 1</label>
+                <input type="text" id="text" name="text">
+            </div>
+            <div>
+                <label for="text">Field 2</label>
+                <input type="text" id="text" name="text">
+            </div>
+            <div>
+                <label for="text">Field 3</label>
+                <input type="text" id="text" name="text">
+            </div>
+        </div>
+        <button>Submit</button>
+    </form>
+</section>
+
 {% endblock %}
+

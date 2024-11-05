@@ -26,27 +26,27 @@ class Employee
     private ?bool $enabled = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $first_name = null;
+    private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $last_name = null;
+    private ?string $lastName = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $contract_type = null;
+    private ?string $contractType = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $employement_date = null;
+    private ?\DateTimeInterface $employmentDate = null;
 
-    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'Employee')]
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'members')]
     private Collection $projects;
 
-    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'asignee')]
-    private Collection $asigned_to;
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'assignee')]
+    private Collection $assignedTo;
 
     public function __construct()
     {
         $this->projects = new ArrayCollection();
-        $this->asigned_to = new ArrayCollection();
+        $this->assignedTo = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,48 +92,48 @@ class Employee
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): static
+    public function setFirstName(string $firstName): static
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): static
+    public function setLastName(string $lastName): static
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     public function getContractType(): ?string
     {
-        return $this->contract_type;
+        return $this->contractType;
     }
 
-    public function setContractType(?string $contract_type): static
+    public function setContractType(?string $contractType): static
     {
-        $this->contract_type = $contract_type;
+        $this->contractType = $contractType;
 
         return $this;
     }
 
-    public function getEmployementDate(): ?\DateTimeInterface
+    public function getEmploymentDate(): ?\DateTimeInterface
     {
-        return $this->employement_date;
+        return $this->employmentDate;
     }
 
-    public function setEmployementDate(?\DateTimeInterface $employement_date): static
+    public function setEmploymentDate(?\DateTimeInterface $employmentDate): static
     {
-        $this->employement_date = $employement_date;
+        $this->employmentDate = $employmentDate;
 
         return $this;
     }
@@ -146,11 +146,17 @@ class Employee
         return $this->projects;
     }
 
+    public function setProjects(array|Collection $projects): static
+    {
+        $this->projects = is_array($projects) ? new ArrayCollection($projects) : $projects;
+        return $this;
+    }
+
     public function addProject(Project $project): static
     {
         if (!$this->projects->contains($project)) {
             $this->projects->add($project);
-            $project->addEmployee($this);
+            $project->addMember($this);
         }
 
         return $this;
@@ -159,7 +165,7 @@ class Employee
     public function removeProject(Project $project): static
     {
         if ($this->projects->removeElement($project)) {
-            $project->removeEmployee($this);
+            $project->removeMember($this);
         }
 
         return $this;
@@ -168,27 +174,32 @@ class Employee
     /**
      * @return Collection<int, Task>
      */
-    public function getAsignedTo(): Collection
+    public function getAssignedTo(): Collection
     {
-        return $this->asigned_to;
+        return $this->assignedTo;
     }
 
-    public function addAsignedTo(Task $asignedTo): static
+    public function setAssignedTo(array|Collection $assignedTo): static
     {
-        if (!$this->asigned_to->contains($asignedTo)) {
-            $this->asigned_to->add($asignedTo);
-            $asignedTo->setAsignee($this);
+        $this->assignedTo = is_array($assignedTo) ? new ArrayCollection($assignedTo) : $assignedTo;
+        return $this;
+    }
+
+    public function addAssignedTo(Task $assignedTo): static
+    {
+        if (!$this->assignedTo->contains($assignedTo)) {
+            $this->assignedTo->add($assignedTo);
+            $assignedTo->setAssignee($this);
         }
 
         return $this;
     }
 
-    public function removeAsignedTo(Task $asignedTo): static
+    public function removeAssignedTo(Task $assignedTo): static
     {
-        if ($this->asigned_to->removeElement($asignedTo)) {
-            // set the owning side to null (unless already changed)
-            if ($asignedTo->getAsignee() === $this) {
-                $asignedTo->setAsignee(null);
+        if ($this->assignedTo->removeElement($assignedTo)) {
+            if ($assignedTo->getAssignee() === $this) {
+                $assignedTo->setAssignee(null);
             }
         }
 

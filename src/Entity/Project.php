@@ -20,32 +20,32 @@ class Project
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $start_date = null;
+    private ?\DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $end_date = null;
+    private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column]
     private ?bool $archived = null;
 
-    #[ORM\ManyToMany(targetEntity: Status::class, mappedBy: 'projects')]
-    private Collection $allowed_statuses;
+    #[ORM\ManyToMany(targetEntity: Status::class, mappedBy: 'allowedIn')]
+    private Collection $allowedStatuses;
 
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'project', orphanRemoval: true)]
     private Collection $tasks;
 
     #[ORM\ManyToMany(targetEntity: Employee::class, inversedBy: 'projects')]
-    private Collection $Employee;
+    private Collection $members;
 
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'allowed_in')]
-    private Collection $allowed_tags;
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'allowedIn')]
+    private Collection $allowedTags;
 
     public function __construct()
     {
-        $this->allowed_statuses = new ArrayCollection();
+        $this->allowedStatuses = new ArrayCollection();
         $this->tasks = new ArrayCollection();
-        $this->Employee = new ArrayCollection();
-        $this->allowed_tags = new ArrayCollection();
+        $this->members = new ArrayCollection();
+        $this->allowedTags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,24 +67,24 @@ class Project
 
     public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->start_date;
+        return $this->startDate;
     }
 
-    public function setStartDate(?\DateTimeInterface $start_date): static
+    public function setStartDate(?\DateTimeInterface $startDate): static
     {
-        $this->start_date = $start_date;
+        $this->startDate = $startDate;
 
         return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->end_date;
+        return $this->endDate;
     }
 
-    public function setEndDate(?\DateTimeInterface $end_date): static
+    public function setEndDate(?\DateTimeInterface $endDate): static
     {
-        $this->end_date = $end_date;
+        $this->endDate = $endDate;
 
         return $this;
     }
@@ -104,25 +104,31 @@ class Project
     /**
      * @return Collection<int, Status>
      */
-    public function getallowed_statuses(): Collection
+    public function getAllowedStatuses(): Collection
     {
-        return $this->allowed_statuses;
+        return $this->allowedStatuses;
     }
 
-    public function addStatus(Status $status): static
+    public function setAllowedStatuses(array|Collection $allowedStatuses): static
     {
-        if (!$this->allowed_statuses->contains($status)) {
-            $this->allowed_statuses->add($status);
-            $status->addProject($this);
+        $this->allowedStatuses = is_array($allowedStatuses) ? new ArrayCollection($allowedStatuses) : $allowedStatuses;
+        return $this;
+    }
+
+    public function addAllowedStatuses(Status $status): static
+    {
+        if (!$this->allowedStatuses->contains($status)) {
+            $this->allowedStatuses->add($status);
+            $status->addAllowedIn($this);
         }
 
         return $this;
     }
 
-    public function removeStatus(Status $status): static
+    public function removeAllowedStatuses(Status $status): static
     {
-        if ($this->allowed_statuses->removeElement($status)) {
-            $status->removeProject($this);
+        if ($this->allowedStatuses->removeElement($status)) {
+            $status->removeAllowedIn($this);
         }
 
         return $this;
@@ -134,6 +140,12 @@ class Project
     public function getTasks(): Collection
     {
         return $this->tasks;
+    }
+
+    public function setTasks(array|Collection $tasks): static
+    {
+        $this->tasks = is_array($tasks) ? new ArrayCollection($tasks) : $tasks;
+        return $this;
     }
 
     public function addTask(Task $task): static
@@ -161,23 +173,29 @@ class Project
     /**
      * @return Collection<int, Employee>
      */
-    public function getEmployee(): Collection
+    public function getMembers(): Collection
     {
-        return $this->Employee;
+        return $this->members;
     }
 
-    public function addEmployee(Employee $employee): static
+    public function setMembers(array|Collection $members): static
     {
-        if (!$this->Employee->contains($employee)) {
-            $this->Employee->add($employee);
+        $this->members = is_array($members) ? new ArrayCollection($members) : $members;
+        return $this;
+    }
+
+    public function addMember(Employee $member): static
+    {
+        if (!$this->members->contains($member)) {
+            $this->members->add($member);
         }
 
         return $this;
     }
 
-    public function removeEmployee(Employee $employee): static
+    public function removeMember(Employee $member): static
     {
-        $this->Employee->removeElement($employee);
+        $this->members->removeElement($member);
 
         return $this;
     }
@@ -187,13 +205,19 @@ class Project
      */
     public function getAllowedTags(): Collection
     {
-        return $this->allowed_tags;
+        return $this->allowedTags;
+    }
+
+    public function setAllowedTags(array|Collection $allowedTags): static
+    {
+        $this->allowedTags = is_array($allowedTags) ? new ArrayCollection($allowedTags) : $allowedTags;
+        return $this;
     }
 
     public function addAllowedTag(Tag $allowedTag): static
     {
-        if (!$this->allowed_tags->contains($allowedTag)) {
-            $this->allowed_tags->add($allowedTag);
+        if (!$this->allowedTags->contains($allowedTag)) {
+            $this->allowedTags->add($allowedTag);
         }
 
         return $this;
@@ -201,7 +225,7 @@ class Project
 
     public function removeAllowedTag(Tag $allowedTag): static
     {
-        $this->allowed_tags->removeElement($allowedTag);
+        $this->allowedTags->removeElement($allowedTag);
 
         return $this;
     }

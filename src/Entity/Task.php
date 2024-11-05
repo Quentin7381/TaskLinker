@@ -23,20 +23,20 @@ class Task
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $end_date = null;
+    private ?\DateTimeInterface $endDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Project $project = null;
 
-    #[ORM\ManyToOne(inversedBy: 'asigned_to')]
-    private ?Employee $asignee = null;
+    #[ORM\ManyToOne(inversedBy: 'assignedTo')]
+    private ?Employee $assignee = null;
 
-    #[ORM\ManyToOne(inversedBy: 'used_in')]
+    #[ORM\ManyToOne(inversedBy: 'usedIn')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Status $status = null;
 
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'used_in')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'usedIn')]
     private Collection $tags;
 
     public function __construct()
@@ -75,12 +75,12 @@ class Task
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->end_date;
+        return $this->endDate;
     }
 
-    public function setEndDate(?\DateTimeInterface $end_date): static
+    public function setEndDate(?\DateTimeInterface $endDate): static
     {
-        $this->end_date = $end_date;
+        $this->endDate = $endDate;
 
         return $this;
     }
@@ -97,14 +97,14 @@ class Task
         return $this;
     }
 
-    public function getAsignee(): ?Employee
+    public function getAssignee(): ?Employee
     {
-        return $this->asignee;
+        return $this->assignee;
     }
 
-    public function setAsignee(?Employee $asignee): static
+    public function setAssignee(?Employee $assignee): static
     {
-        $this->asignee = $asignee;
+        $this->assignee = $assignee;
 
         return $this;
     }
@@ -142,6 +142,12 @@ class Task
     {
         $this->tags->removeElement($tag);
 
+        return $this;
+    }
+
+    public function setTags(array|Collection $tags): static
+    {
+        $this->tags = is_array($tags) ? new ArrayCollection($tags) : $tags;
         return $this;
     }
 }

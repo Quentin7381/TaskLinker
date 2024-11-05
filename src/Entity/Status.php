@@ -18,16 +18,16 @@ class Status
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'allowed_statuses')]
-    private Collection $allowed_in;
+    #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'allowedStatuses')]
+    private Collection $allowedIn;
 
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'status')]
-    private Collection $used_in;
+    private Collection $usedIn;
 
     public function __construct()
     {
-        $this->projects = new ArrayCollection();
-        $this->used_in = new ArrayCollection();
+        $this->allowedIn = new ArrayCollection();
+        $this->usedIn = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -50,23 +50,29 @@ class Status
     /**
      * @return Collection<int, Project>
      */
-    public function getProjects(): Collection
+    public function getAllowedIn(): Collection
     {
-        return $this->projects;
+        return $this->allowedIn;
     }
 
-    public function addProject(Project $project): static
+    public function setAllowedIn(array|Collection $allowedIn): static
     {
-        if (!$this->projects->contains($project)) {
-            $this->projects->add($project);
+        $this->allowedIn = is_array($allowedIn) ? new ArrayCollection($allowedIn) : $allowedIn;
+        return $this;
+    }
+
+    public function addAllowedIn(Project $allowedIn): static
+    {
+        if (!$this->allowedIn->contains($allowedIn)) {
+            $this->allowedIn->add($allowedIn);
         }
 
         return $this;
     }
 
-    public function removeProject(Project $project): static
+    public function removeAllowedIn(Project $allowedIn): static
     {
-        $this->projects->removeElement($project);
+        $this->allowedIn->removeElement($allowedIn);
 
         return $this;
     }
@@ -76,13 +82,19 @@ class Status
      */
     public function getUsedIn(): Collection
     {
-        return $this->used_in;
+        return $this->usedIn;
+    }
+
+    public function setUsedIn(array|Collection $usedIn): static
+    {
+        $this->usedIn = is_array($usedIn) ? new ArrayCollection($usedIn) : $usedIn;
+        return $this;
     }
 
     public function addUsedIn(Task $usedIn): static
     {
-        if (!$this->used_in->contains($usedIn)) {
-            $this->used_in->add($usedIn);
+        if (!$this->usedIn->contains($usedIn)) {
+            $this->usedIn->add($usedIn);
             $usedIn->setStatus($this);
         }
 
@@ -91,7 +103,7 @@ class Status
 
     public function removeUsedIn(Task $usedIn): static
     {
-        if ($this->used_in->removeElement($usedIn)) {
+        if ($this->usedIn->removeElement($usedIn)) {
             // set the owning side to null (unless already changed)
             if ($usedIn->getStatus() === $this) {
                 $usedIn->setStatus(null);

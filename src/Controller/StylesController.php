@@ -13,6 +13,7 @@ class StylesController extends AbstractController
     {
         return $this->render('styles/index.html.twig', [
             'controller_name' => 'StylesController',
+            'title' => 'Test Css',
         ]);
     }
 }

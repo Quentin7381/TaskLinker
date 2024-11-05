@@ -1616,7 +1616,7 @@
             "license": [
                 "MIT"
             ],
-            "description": "PHPDoc parser with support for nullable, interregion and generic types",
+            "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
                 "source": "https://github.com/phpstan/phpdoc-parser/tree/1.33.0"

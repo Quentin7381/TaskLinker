@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{{title}}{% endblock %}</title>
+        <title>{% block pageTitle %}{{title}}{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         
         {% block stylesheets %}
@@ -20,10 +20,14 @@
         {% endblock %}
     </head>
     <body>
-        {% include 'region/topbar.html.twig' with {'title': title} %}
+        <header class="region region-topbar">
+        {% block title %}
+            <h1>{{title}}</h1>
+        {% endblock %}
+        </header>
         {% include 'region/sidebar.html.twig' %}
-        <div class="region region-body">
-            {% block body %}{% endblock %}
+        <div class="region region-content">
+            {% block content %}{% endblock %}
         </div>
     </body>
 </html>

@@ -119,9 +119,22 @@ table tr, table .tr, .table tr, .table .tr {
 table thead th, table thead .th, table .thead th, table .thead .th, .table thead th, .table thead .th, .table .thead th, .table .thead .th {
   padding: 15px 20px 35px 20px;
   font-size: 1.125rem;
+  text-align: left;
+}
+table thead th > div, table thead .th > div, table .thead th > div, table .thead .th > div, .table thead th > div, .table thead .th > div, .table .thead th > div, .table .thead .th > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
 }
 table tbody td, table tbody .td, table .tbody td, table .tbody .td, .table tbody td, .table tbody .td, .table .tbody td, .table .tbody .td {
   padding: 15px 20px;
+}
+table tbody td > div, table tbody .td > div, table .tbody td > div, table .tbody .td > div, .table tbody td > div, .table tbody .td > div, .table .tbody td > div, .table .tbody .td > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
 }
 
 .action {
@@ -149,6 +162,7 @@ i.action-add {
 
 button.action, .button.action, .region-sidebar .menu a.action {
   --color: #ffffff;
+  text-decoration: none;
 }
 button.action-delete, .button.action-delete, .region-sidebar .menu a.action-delete {
   background: #E14343;
@@ -261,6 +275,10 @@ form .cols > div, .form .cols > div {
   max-width: 100px;
 }
 
+.employe--vignette {
+  font-weight: bold;
+}
+
 .region-topbar {
   height: 155px;
   width: 100%;
@@ -293,8 +311,29 @@ form .cols > div, .form .cols > div {
   justify-content: space-evenly;
   min-width: unset;
 }
-.region-body {
+.region-content {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  padding: 32px 16px;
+}
+
+.employee-row__cell-info {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  column-gap: 32px;
+  row-gap: 0;
+}
+.employee-row__vignette {
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+.employee-row__name {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  font-weight: bold;
+}
+.employee-row__email {
+  grid-column: 2/3;
+  grid-row: 2/3;
 }

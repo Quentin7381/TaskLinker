@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.firstName) }}
+    {{ form_row(form.lastName) }}
+    {{ form_row(form.email) }}
+    <div class="cols">
+        {{ form_row(form.contractType) }}
+        {{ form_row(form.employmentDate) }}
+    </div>
+    <button class="button">{{ 'Enregistrer' }}</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -29,7 +29,6 @@ final class EmployeeFactory extends PersistentProxyObjectFactory
             'last_name' => self::faker()->lastName(),
             'email' => self::faker()->unique()->safeEmail(),
             'enabled' => true,
-            'password' => self::faker()->password(),
         ];
     }
 

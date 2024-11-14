@@ -45,4 +45,13 @@ class EmployeController extends AbstractController
             'title' => $employee->getFirstName() ? $employee->getFirstName() . ' ' . $employee->getLastName() : 'Ajouter un employé',
         ]);
     }
+
+    #[Route('/employe/delete/{id}', name: 'employe_delete', requirements: ['id' => '\d+'])]
+    public function delete(EntityManagerInterface $entityManager, Employee $employee): Response
+    {
+        $entityManager->remove($employee);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('equipe');
+    }
 }

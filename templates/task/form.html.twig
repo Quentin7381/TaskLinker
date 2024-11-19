@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.endDate)}}
+    {{ form_row(form.status)}}
+    {{ form_row(form.assignee) }}
+    {{ form_row(form.project) }}
+    <button class="button">{{ 'Enregistrer' }}</button>
+    {{ form_end(form) }}
+{% endblock %}
+

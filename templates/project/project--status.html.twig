@@ -1,11 +1,11 @@
 <div class="task-table__status">
     <h2>{{ status.name }}</h2>
     <div class="task-table__tasks">
-        {# {% for task in project.tasks %}
+        {% for task in project.tasks %}
             {% if task.status == status %}
-                {% include 'project/project--task.html.twig' with {'task': task, 'project': project} %}
+                {% include 'task/task--card.html.twig' with {'task': task, 'project': project} %}
             {% endif %}
-        {% endfor %} #}
+        {% endfor %}
     </div>
     {% include 'task/task--link-add.html.twig' with {'project' : project} %}
 </div>

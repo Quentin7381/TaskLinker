@@ -92,7 +92,21 @@ class Task
 
     public function setProject(?Project $project): static
     {
+        // Relfect the case of a project removal in the project entity
+        if (
+            $this->project
+            && $this->project !== $project
+            && $this->project->getTasks()->contains($this)
+        ) {
+            $this->project->removeTask($this);
+        }
+
         $this->project = $project;
+
+        // Reflect this in the project entity
+        if ($project && !$project->getTasks()->contains($this)) {
+            $project->addTask($this);
+        }
 
         return $this;
     }

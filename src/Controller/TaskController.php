@@ -28,7 +28,10 @@ class TaskController extends AbstractController
     public function form(Request $request, EntityManagerInterface $entityManager, ?Task $task = null): Response
     {
         $task = $task ?? new Task();
-        $task->setProject($task->getProject() ?? $entityManager->getRepository(Project::class)->find($request->get('projectId')));
+        $project = $task->getProject() ?? $entityManager->getRepository(Project::class)->find($request->get('projectId'));
+        if($project) {
+            $task->setProject($project);
+        }
 
         $form = $this->createForm(TaskType::class, $task, ['project' => $task->getProject()]);
 
@@ -53,7 +56,7 @@ class TaskController extends AbstractController
         $entityManager->remove($task);
         $entityManager->flush();
 
-        return $this->redirectToRoute('task_list');
+        return $this->redirectToRoute('project_page', ['id' => $task->getProject()->getId()]);
     }
 
     #[Route('/task/{id}', name: 'task_page', requirements: ['id' => '\d+'])]

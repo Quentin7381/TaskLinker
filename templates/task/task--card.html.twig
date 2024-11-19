@@ -1,4 +1,8 @@
 <div class="task-card">
     <h3>{{ task.name }}</h3>
     <p>{{ task.description }}</p>
+    <div class="task-card__action">
+        {% include 'task/task--link-edit-icon.html.twig' with {'task': task} %}
+        {% include 'task/task--link-delete-icon.html.twig' with {'task': task} %}
+    </div>    
 </div>

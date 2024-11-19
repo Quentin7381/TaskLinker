@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <h1>{{ title }}</h1>
+    <div class="project-page__title">
+        <h1>{{ title }}</h1>
+        <div class="circle-list">
+            {% for employee in project.members %}
+                {% include 'employee/employee--vignette.html.twig' with {'employee': employee} %}
+            {% endfor %}
+        </div>
+        {% include 'project/project--link-edit.html.twig' with {'project': project, 'classes': 'button bg-active'} %}
+    </div>
 {% endblock %}
 
 {% block content %}

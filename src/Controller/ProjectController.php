@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProjectController extends AbstractController
 {
     
-    #[Route('/project', name: 'projet')]
+    #[Route('/project', name: 'project')]
     public function list(EntityManagerInterface $entityManager): Response
     {
         $projects = $entityManager->getRepository(Project::class)->findAll();
@@ -35,7 +35,7 @@ class ProjectController extends AbstractController
             $entityManager->persist($project);
             $entityManager->flush();
 
-            return $this->redirectToRoute('projet');
+            return $this->redirectToRoute('project');
         }
 
         return $this->render('project/form.html.twig', [
@@ -50,7 +50,7 @@ class ProjectController extends AbstractController
         $entityManager->remove($project);
         $entityManager->flush();
 
-        return $this->redirectToRoute('projet');
+        return $this->redirectToRoute('project');
     }
 
     #[Route('/project/archive/{id}', name: 'project_archive', requirements: ['id' => '\d+'])]
@@ -60,7 +60,7 @@ class ProjectController extends AbstractController
         $entityManager->persist($project);
         $entityManager->flush();
 
-        return $this->redirectToRoute('projet');
+        return $this->redirectToRoute('project');
     }
 
     #[Route('/project/{id}', name: 'project_page', requirements: ['id' => '\d+'])]

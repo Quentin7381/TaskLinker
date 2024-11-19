@@ -66,6 +66,7 @@ body {
 .bg-active, .region-sidebar .menu a .--active, button.--active, .button.--active, .region-sidebar .menu a.--active {
   background: #dcfdad;
   color: #1c5b50;
+  --color: #1c5b50 !important;
 }
 
 .success {
@@ -250,6 +251,15 @@ button.action-delete, .button.action-delete, .region-sidebar .menu a.action-dele
   z-index: 1;
   cursor: pointer;
   border-radius: 50%;
+}
+
+.circle-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.circle-list > .circle {
+  margin-left: -8px;
+  border: 1px solid #b5b5b5;
 }
 
 form, .form {
@@ -517,4 +527,13 @@ div:has(> .search-and-select) > label {
 .employee-row__email {
   grid-column: 2/3;
   grid-row: 2/3;
+}
+
+.project-page__title {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.project-page__title .action-edit {
+  --color-background: #dcfdad !important;
 }

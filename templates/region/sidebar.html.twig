@@ -1,7 +1,7 @@
 <sidebar class="region region-sidebar">
     {% include '/components/logo.html.twig' %}
     <nav class="menu">
-        <a href=""><i class="fa-solid fa-list-check"></i><span>Projets</span></a>
-        <a href="" class="--active"><i class="fa-regular fa-user"></i><span>Équipe</span></a>
+        <a href="/project"class="{{route_is_active(['project*', 'task*']) ? '--active' : ''}}"><i class="fa-solid fa-list-check"></i><span>Projets</span></a>
+        <a href="/equipe" class="{{route_is_active(['employee*']) ? '--active' : ''}}"><i class="fa-regular fa-user"></i><span>Équipe</span></a>
     </nav>
 </sidebar>

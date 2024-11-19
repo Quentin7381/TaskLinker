@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EmployeController extends AbstractController
 {
-    #[Route('/equipe', name: 'team')]
+    #[Route('/equipe', name: 'employee_list')]
     public function index(EntityManagerInterface $entityManager): Response
     {
         // Get all employees with manager
@@ -25,8 +25,8 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    #[Route('/employe/edit/{id}', name: 'employee_edit', requirements: ['id' => '\d+']),]
-    #[Route('/employe/add', name: 'employee_add')]
+    #[Route('/employee/edit/{id}', name: 'employee_edit', requirements: ['id' => '\d+']),]
+    #[Route('/employee/add', name: 'employee_add')]
     public function form(Request $request, EntityManagerInterface $entityManager, ?Employee $employee = null): Response
     {
         $employee = $employee ?? new Employee();
@@ -37,7 +37,7 @@ class EmployeController extends AbstractController
             $entityManager->persist($employee);
             $entityManager->flush();
     
-            return $this->redirectToRoute('team');
+            return $this->redirectToRoute('employee_list');
         }
     
         return $this->render('employee/form.html.twig', [
@@ -52,6 +52,6 @@ class EmployeController extends AbstractController
         $entityManager->remove($employee);
         $entityManager->flush();
 
-        return $this->redirectToRoute('team');
+        return $this->redirectToRoute('employee_list');
     }
 }

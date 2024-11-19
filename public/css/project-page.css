@@ -1,0 +1,4 @@
+.project-page__title {
+  display: flex;
+  background: red !important;
+}

@@ -26,7 +26,7 @@
             <h1>{{title}}</h1>
         {% endblock %}
         </header>
-        {% include 'region/sidebar.html.twig' %}
+        {% include 'region/sidebar.html.twig' with {'app': app} %}
         <div class="region region-content">
             {% block content %}{% endblock %}
         </div>

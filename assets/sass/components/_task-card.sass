@@ -1,0 +1,33 @@
+.task-card
+    padding: 10px
+    border-radius: 4px
+    background: $color-background-darkish
+
+    display: flex
+    flex-direction: column
+    gap: 6px
+
+    &__title
+        font-size: $font-s
+        color: $color-text
+
+    &__description
+        font-size: $font-xs
+        color: $color-text-light
+
+        // show 4 lines max
+        overflow: hidden
+        text-overflow: ellipsis
+        display: -webkit-box
+        -webkit-line-clamp: 4
+        -webkit-box-orient: vertical
+
+    &__action
+        display: flex
+        gap: 10px
+        justify-content: right
+
+        .action:before
+            font-size: $font-s
+
+    

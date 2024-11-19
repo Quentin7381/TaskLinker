@@ -18,15 +18,15 @@
                 <tr class="employee-row">
                     <td>
                         <div class="employee-row__cell-info">
-                            {% include 'employe/employe--vignette.html.twig' with {'employee': member, 'classes' : 'employee-row__vignette'} %}<span class="employee-row__name">{{ member.firstname }} {{ member.lastname }}</span><span class="employee-row__email">{{ member.email }}</span>
+                            {% include 'employee/employee--vignette.html.twig' with {'employee': member, 'classes' : 'employee-row__vignette'} %}<span class="employee-row__name">{{ member.firstName }} {{ member.lastName }}</span><span class="employee-row__email">{{ member.email }}</span>
                         </div>
                     </td>
                     
                     <td>{{ member.contractType ?? "indéfini" }}</td>
                     <td>
                         <div>
-                            {% include 'employe/employe--link-edit.html.twig' with {'employee': member, 'classes': 'button'} %}
-                            {% include 'employe/employe--link-delete.html.twig' with {'employee': member} %}
+                            {% include 'employee/employee--link-edit.html.twig' with {'employee': member, 'classes': 'button'} %}
+                            {% include 'employee/employee--link-delete.html.twig' with {'employee': member} %}
                         </div>
                     </td>
                 </tr>
@@ -34,7 +34,7 @@
                 <tr>
                     <td colspan="3">
                         <div>
-                            {% include 'employe/employe--link-add.html.twig' with {'classes': 'button'} %}
+                            {% include 'employee/employee--link-add.html.twig' with {'classes': 'button'} %}
                         </div>
                     </td>
                 </tr>

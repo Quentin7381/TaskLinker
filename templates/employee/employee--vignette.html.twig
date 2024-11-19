@@ -1,0 +1,5 @@
+{% set initials = employee.firstName|slice(0, 1) ~ employee.lastName|slice(0, 1) %}
+
+<div class="circle employee employee--vignette {{classes ?? ''}}">
+    {{ initials }}
+</div>

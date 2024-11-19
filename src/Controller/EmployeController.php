@@ -12,21 +12,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EmployeController extends AbstractController
 {
-    #[Route('/equipe', name: 'equipe')]
+    #[Route('/equipe', name: 'team')]
     public function index(EntityManagerInterface $entityManager): Response
     {
         // Get all employees with manager
         $team = $entityManager->getRepository(Employee::class)->findAll();
 
-        return $this->render('employe/equipe.html.twig', [
+        return $this->render('employee/team.html.twig', [
             'controller_name' => 'EmployeController',
             'title' => 'Liste des employés - TaskLinker',
             'team' => $team,
         ]);
     }
 
-    #[Route('/employe/edit/{id}', name: 'employe_edit', requirements: ['id' => '\d+']),]
-    #[Route('/employe/add', name: 'employe_add')]
+    #[Route('/employe/edit/{id}', name: 'employee_edit', requirements: ['id' => '\d+']),]
+    #[Route('/employe/add', name: 'employee_add')]
     public function form(Request $request, EntityManagerInterface $entityManager, ?Employee $employee = null): Response
     {
         $employee = $employee ?? new Employee();
@@ -37,21 +37,21 @@ class EmployeController extends AbstractController
             $entityManager->persist($employee);
             $entityManager->flush();
     
-            return $this->redirectToRoute('equipe');
+            return $this->redirectToRoute('team');
         }
     
-        return $this->render('employe/form.html.twig', [
+        return $this->render('employee/form.html.twig', [
             'form' => $form->createView(),
             'title' => $employee->getFirstName() ? $employee->getFirstName() . ' ' . $employee->getLastName() : 'Ajouter un employé',
         ]);
     }
 
-    #[Route('/employe/delete/{id}', name: 'employe_delete', requirements: ['id' => '\d+'])]
+    #[Route('/employee/delete/{id}', name: 'employee_delete', requirements: ['id' => '\d+'])]
     public function delete(EntityManagerInterface $entityManager, Employee $employee): Response
     {
         $entityManager->remove($employee);
         $entityManager->flush();
 
-        return $this->redirectToRoute('equipe');
+        return $this->redirectToRoute('team');
     }
 }

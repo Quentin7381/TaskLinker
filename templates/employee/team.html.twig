@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    <h1>Team</h1>
+{% endblock %}
+
+{% block content %}
+    <table class="table-team">
+        <thead>
+            <tr>
+                <th>First Name, Last Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in team %}
+                <tr class="employee-row">
+                    <td>
+                        <div class="employee-row__cell-info">
+                            {% include 'employee/employee--vignette.html.twig' with {'employee': member, 'classes' : 'employee-row__vignette'} %}<span class="employee-row__name">{{ member.firstName }} {{ member.lastName }}</span><span class="employee-row__email">{{ member.email }}</span>
+                        </div>
+                    </td>
+                    
+                    <td>{{ member.contractType ?? "undefined" }}</td>
+                    <td>
+                        <div>
+                            {% include 'employee/employee--link-edit.html.twig' with {'employee': member, 'classes': 'button'} %}
+                            {% include 'employee/employee--link-delete.html.twig' with {'employee': member} %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td colspan="3">
+                        <div>
+                            {% include 'employee/employee--link-add.html.twig' with {'classes': 'button'} %}
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -18,7 +18,7 @@ class Status
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'allowedStatuses')]
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'allowedStatuses')]
     private Collection $allowedIn;
 
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'status')]

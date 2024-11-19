@@ -3,8 +3,8 @@
 {% block content %}
     {{ form_start(form) }}
     {{ form_row(form.name) }}
-    {{ form_row(form.archived) }}
     {{ form_row(form.members) }}
+    {{ form_row(form.allowedStatuses)}}
     <button class="button">{{ 'Enregistrer' }}</button>
     {{ form_end(form) }}
 {% endblock %}

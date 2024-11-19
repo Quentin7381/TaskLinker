@@ -397,6 +397,36 @@ div:has(> .search-and-select) > label {
   font-weight: bold;
 }
 
+.task-table {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+.task-table__status {
+  flex: 1;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #b5b5b5;
+}
+.task-table__status h2 {
+  color: #1c5b50;
+  font-size: 1.125rem;
+  text-transform: capitalize;
+}
+.task-table__status__tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.task-table__status .action-add {
+  display: inline-block;
+  text-decoration: none;
+  text-color: #202020;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
 .region-topbar {
   height: 155px;
   width: 100%;

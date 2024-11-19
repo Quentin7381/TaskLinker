@@ -28,7 +28,7 @@ class Project
     #[ORM\Column]
     private ?bool $archived = null;
 
-    #[ORM\ManyToMany(targetEntity: Status::class, mappedBy: 'allowedIn')]
+    #[ORM\ManyToMany(targetEntity: Status::class, inversedBy: 'allowedIn')]
     private Collection $allowedStatuses;
 
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'project', orphanRemoval: true)]

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <h1>{{ title }}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="task-table">
+        {% for status in project.allowedStatuses %}
+            {% include 'project/project--status.html.twig' with {'status': status, 'project': project} %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProjectController extends AbstractController
 {
     
-    #[Route('/projet', name: 'projet')]
+    #[Route('/project', name: 'projet')]
     public function list(EntityManagerInterface $entityManager): Response
     {
         $projects = $entityManager->getRepository(Project::class)->findAll();
@@ -61,5 +61,14 @@ class ProjectController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('projet');
+    }
+
+    #[Route('/project/{id}', name: 'project_page', requirements: ['id' => '\d+'])]
+    public function page(Project $project): Response
+    {
+        return $this->render('project/page.html.twig', [
+            'project' => $project,
+            'title' => $project->getName(),
+        ]);
     }
 }

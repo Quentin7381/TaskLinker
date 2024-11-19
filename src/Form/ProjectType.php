@@ -7,9 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use App\Entity\Status;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Employee;
 
@@ -27,6 +25,14 @@ class ProjectType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'Employés',
+                'attr' => ['class' => 'search-and-select'],
+            ])
+            ->add('allowedStatuses', EntityType::class, [
+                'class' => Status::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'Statuts autorisés',
                 'attr' => ['class' => 'search-and-select'],
             ]);
     }

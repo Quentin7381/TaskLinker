@@ -1,0 +1,90 @@
+.search-and-select
+    width: 100%
+    display: grid !important
+    grid-template-columns: 1fr
+
+    &__search
+        margin-bottom: 0
+        &:focus
+            outline: none !important
+            border: 2px solid $color-border-active
+            border-bottom: 1px solid $color-border
+            border-radius: 0.5em 0.5em 0 0
+
+    &__select-list
+        display: flex
+        flex-wrap: wrap
+        justify-content: left
+        align-items: flex-start
+        gap: 0.5em
+
+        font-size: $font-xs
+        list-style: none
+
+        margin: 1em 0
+
+    &__checkboxes
+        display: flex
+        flex-direction: column
+        border: 1px solid $color-border
+        border-top: none
+
+        padding-top: 5px !important
+
+        max-height: 300px
+        overflow-y: auto
+
+        scrollbar-width: thin
+        
+        border: 2px solid $color-border-active !important
+        border-top: none !important
+
+
+    &__checkbox
+        display: none
+        &:checked + label::after
+            // fa check
+            content: "\f00c"
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
+            color: $color-success
+            margin-left: 0.5em
+
+
+    &__checkbox-label
+        display: block
+        width: 100%
+        text-align: left
+        cursor: pointer
+        user-select: none
+
+    &__select-item
+        display: flex
+        gap: 0.5em
+        align-items: center
+
+        padding: 0.5em
+        border: 1px solid $color-border
+        border-radius: 0.5em
+        cursor: pointer
+        transition: background 0.2s
+        &:after
+            // fa cross
+            content: "\f00d"
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
+        &:hover
+            // color danger but 50% opacity
+            background: rgba($color-danger, 0.5)
+            
+
+div:has(>.search-and-select)
+    display: flex
+    justify-content: left
+    align-items: flex-start
+    flex-direction: column
+
+    >label
+        display: block
+        width: 100%
+        text-align: left

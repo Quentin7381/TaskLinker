@@ -229,4 +229,18 @@ class Project
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Employee>
+     */
+    public function getEmployees(): Collection
+    {
+        return $this->members;
+    }
+
+    public function setEmployees(array|Collection $employees): static
+    {
+        $this->members = is_array($employees) ? new ArrayCollection($employees) : $employees;
+        return $this;
+    }
 }

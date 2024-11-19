@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    <h1>Projets</h1>
+{% endblock %}
+
+{% block content %}
+    <table class="table-project">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+                <tr class="project-row">
+                    <td>
+                        {{project.name|capitalize}}
+                    </td>
+                    
+                    <td>{{ project.archived ? "Archivé" : "En cours" }}</td>
+                    <td>
+                        <div>                         
+                            {% include 'project/project--link-edit.html.twig' with {'project': project, 'classes': 'button'} %}
+                            {% if not project.archived %}
+                                {% include 'project/project--link-archive.html.twig' with {'project': project} %}
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td colspan="3">
+                        <div>
+                            {% include 'project/project--link-add.html.twig' with {'classes': 'button'} %}
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

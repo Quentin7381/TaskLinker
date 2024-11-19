@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.archived) }}
+    {{ form_row(form.members) }}
+    <button class="button">{{ 'Enregistrer' }}</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/SearchAndSelect.js') }}"></script>
+{% endblock %}
+

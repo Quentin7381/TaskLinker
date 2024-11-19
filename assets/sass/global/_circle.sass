@@ -12,7 +12,39 @@
     aspect-ratio: 1/1
     width: 54px
 
-    .circle-link
+    &.s
+        width: 24px
+        font-size: $font-s
+        >i
+            max-height: 100%
+            &:before
+                font-size: $font-s
+    
+    &.m
+        width: 32px
+        font-size: $font-m
+        >i
+            max-height: 100%
+            &:before
+                font-size: $font-m
+
+    &.l
+        width: 44px
+        font-size: $font-l
+        >i
+            max-height: 100%
+            &:before
+                font-size: $font-l
+
+    &.xl
+        width: 54px
+        font-size: $font-xl
+        >i
+            max-height: 100%
+            &:before
+                font-size: $font-xl
+
+    .circle-link, a
         position: absolute
         top: 0
         left: 0
@@ -21,6 +53,9 @@
         z-index: 1
         cursor: pointer
         border-radius: 50%
+
+a.circle
+    text-decoration: none    
 
 .circle-list
     display: flex

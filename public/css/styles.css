@@ -191,9 +191,8 @@ button.action-delete, .button.action-delete, .region-sidebar .menu a.action-dele
 }
 
 .cardlist {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(223px, 1fr));
   gap: 30px;
 }
 
@@ -229,6 +228,11 @@ button.action-delete, .button.action-delete, .region-sidebar .menu a.action-dele
   width: 100%;
   height: 100%;
   z-index: 1;
+  color: transparent;
+  font-size: 0;
+}
+.card .card-link > i {
+  display: none;
 }
 
 .circle {
@@ -242,7 +246,47 @@ button.action-delete, .button.action-delete, .region-sidebar .menu a.action-dele
   aspect-ratio: 1/1;
   width: 54px;
 }
-.circle .circle-link {
+.circle.s {
+  width: 24px;
+  font-size: 0.85rem;
+}
+.circle.s > i {
+  max-height: 100%;
+}
+.circle.s > i:before {
+  font-size: 0.85rem;
+}
+.circle.m {
+  width: 32px;
+  font-size: 1rem;
+}
+.circle.m > i {
+  max-height: 100%;
+}
+.circle.m > i:before {
+  font-size: 1rem;
+}
+.circle.l {
+  width: 44px;
+  font-size: 1.125rem;
+}
+.circle.l > i {
+  max-height: 100%;
+}
+.circle.l > i:before {
+  font-size: 1.125rem;
+}
+.circle.xl {
+  width: 54px;
+  font-size: 1.375rem;
+}
+.circle.xl > i {
+  max-height: 100%;
+}
+.circle.xl > i:before {
+  font-size: 1.375rem;
+}
+.circle .circle-link, .circle a {
   position: absolute;
   top: 0;
   left: 0;
@@ -251,6 +295,10 @@ button.action-delete, .button.action-delete, .region-sidebar .menu a.action-dele
   z-index: 1;
   cursor: pointer;
   border-radius: 50%;
+}
+
+a.circle {
+  text-decoration: none;
 }
 
 .circle-list {

@@ -55,7 +55,7 @@ final class TaskFactory extends PersistentProxyObjectFactory
         }
         
         return [
-            'name' => self::faker()->word(),
+            'name' => $this->getTaskName(),
             'description' => self::faker()->sentence(),
             'endDate' => self::faker()->dateTimeBetween('now', '+1 year'),
             'status' => $status,
@@ -63,5 +63,36 @@ final class TaskFactory extends PersistentProxyObjectFactory
             'project' => $project,
             'assignee' => @end($employeeRepository->getRandom()),
         ];
+    }
+
+    public function getTaskName(): string
+    {
+        $words1 = [
+            'Optimize',
+            'Refactor',
+            'Develop',
+            'Fix',
+            'Update',
+        ];
+
+        $words2 = [
+            'user',
+            'admin',
+            'system',
+            'database',
+            'application',
+            'homepage',
+            'login',
+        ];
+
+        $words3 = [
+            'interface',
+            'performance',
+            'security',
+            'protocol',
+            'algorithm',
+        ];
+
+        return self::faker()->randomElement($words1) . ' ' . self::faker()->randomElement($words2) . ' ' . self::faker()->randomElement($words3);
     }
 }

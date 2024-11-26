@@ -24,8 +24,18 @@ final class StatusFactory extends PersistentProxyObjectFactory
     }
     protected function defaults(): array|callable
     {
+        $statusNames = [
+            'New',
+            'In Progress',
+            'Review',
+            'Done',
+            'Blocked',
+            'Cancelled',
+            'Closed',
+        ];
+
         return [
-            'name' => self::faker()->word(),
+            'name' => self::faker()->unique()->randomElement($statusNames),
         ];
     }
 }

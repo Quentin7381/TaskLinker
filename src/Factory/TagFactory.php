@@ -24,8 +24,24 @@ final class TagFactory extends PersistentProxyObjectFactory
     }
     protected function defaults(): array|callable
     {
+        $tagNames = [
+            'Backend',
+            'Frontend',
+            'Bug',
+            'Feature',
+            'UI',
+            'UX',
+            'Database',
+            'Security',
+            'Accessibility',
+            'Performance',
+            'SEO',
+            'Mobile',
+            'Desktop',
+        ];
+
         return [
-            'name' => self::faker()->word(),
+            'name' => self::faker()->unique()->randomElement($tagNames),
         ];
     }
 }

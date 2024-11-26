@@ -37,11 +37,11 @@ final class ProjectFactory extends PersistentProxyObjectFactory
         $employeeRepository = $this->entityManager->getRepository(Employee::class);
         $tagRepository = $this->entityManager->getRepository(Tag::class);
 
-        $statuses = $statusRepository->getRandom(self::faker()->numberBetween(2, 5));
+        $statuses = $statusRepository->getRandom(self::faker()->numberBetween(3, 5));
         $statuses = array_filter($statuses);
 
         return [
-            'name' => self::faker()->words(3, true),
+            'name' => $this->getProjectName(),
             'startDate' => $startDate,
             'endDate' => $endDate,
             'archived' => false,
@@ -49,5 +49,33 @@ final class ProjectFactory extends PersistentProxyObjectFactory
             'allowedTags' => $tagRepository->getRandom(self::faker()->numberBetween(4, 8)),
             'members' => $employeeRepository->getRandom(self::faker()->numberBetween(1, 10)),
         ];
+    }
+
+    protected function getProjectName(): string
+    {
+        $firstWord = [
+            "Apollo",
+            "Task",
+            "Sun",
+            "Green",
+            "Shoe",
+            "Cat",
+            "Book",
+            "Web",
+        ];
+
+        $secondWord = [
+            "Mission",
+            "Linker",
+            "Rise",
+            "Peace",
+            "Store",
+            "Maker",
+            "Quest",
+            "Factory",
+            "Hub",
+        ];
+
+        return self::faker()->randomElement($firstWord) . ' ' . self::faker()->randomElement($secondWord);
     }
 }

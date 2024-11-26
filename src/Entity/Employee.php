@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Employee
 {
     #[ORM\Id]
@@ -189,5 +190,17 @@ class Employee
         }
 
         return $this;
+    }
+    
+    #[ORM\PreRemove]
+    public function preRemove(): void
+    {
+        foreach ($this->projects as $project) {
+            $this->removeProject($project);
+        }
+    
+        foreach ($this->assignedTo as $task) {
+            $this->removeAssignedTo($task);
+        }
     }
 }

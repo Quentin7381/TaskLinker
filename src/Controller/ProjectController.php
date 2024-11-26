@@ -12,7 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProjectController extends AbstractController
 {
-    
+
+    #[Route('/' , name: 'home')]
+    public function home(): Response
+    {
+        return $this->redirectToRoute('project');
+    }
+
     #[Route('/project', name: 'project')]
     public function list(EntityManagerInterface $entityManager): Response
     {

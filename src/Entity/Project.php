@@ -26,7 +26,7 @@ class Project
     private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column]
-    private ?bool $archived = null;
+    private ?bool $archived = false;
 
     #[ORM\ManyToMany(targetEntity: Status::class, inversedBy: 'allowedIn')]
     private Collection $allowedStatuses;
